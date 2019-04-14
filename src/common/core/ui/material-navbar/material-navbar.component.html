@@ -1,0 +1,38 @@
+<div class="navbar-container" [class.container]="container">
+    <a routerLink="/" class="logo-container">
+        <img class="logo" *ngIf="config.get('branding.logo_light')" [src]="config.getBaseUrl(true) + config.get('branding.logo_light')">
+        <div class="text-logo" *ngIf="!config.get('branding.logo_light')">{{config.get('branding.site_name')}}</div>
+    </a>
+
+    <button class="toggle-sidebar-button" mat-icon-button *ngIf="showToggleButton" (click)="toggleButtonClick.emit()">
+        <mat-icon svgIcon="menu"></mat-icon>
+    </button>
+
+    <ng-content></ng-content>
+
+    <custom-menu [position]="menuPosition" *ngIf="!breakpoints.isMobile$.value"></custom-menu>
+
+    <ng-container *ngIf="(breakpoints.isMobile$ | async) && !showToggleButton">
+        <button class="toggle-sidebar-button" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon svgIcon="menu"></mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <custom-menu [position]="menuPosition" itemClass="mat-menu-item"></custom-menu>
+        </mat-menu>
+    </ng-container>
+
+    <div class="right-side-actions">
+        <ng-container *ngIf="searchInput && (breakpoints.isMobile$ | async)">
+            <button mat-icon-button class="mobile-search-toggle" (click)="openMobileSearch()" *ngIf="!(mobileSearchActive$ | async); else closeToggle">
+                <mat-icon svgIcon="search"></mat-icon>
+            </button>
+            <ng-template #closeToggle>
+                <button mat-icon-button class="mobile-search-toggle" (click)="closeMobileSearch()">
+                    <mat-icon svgIcon="close"></mat-icon>
+                </button>
+            </ng-template>
+        </ng-container>
+        <logged-in-user-widget [showAuthButtons]="showAuthButtons"></logged-in-user-widget>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+@import "../../scss/variables";
+@import "../scss/admin-pill-nav";
+@import "../scss/setting-checkbox";
+@import "../scss/flex-table-panel";
+
+admin {
+  display: block;
+  background-color: $admin-background-color;
+
+  material-navbar {
+    position: fixed;
+    width: 100%;
+  }
+
+  .admin-page-content {
+    position: relative;
+    top: $material-navbar-height;
+    min-height: calc(100vh - #{$material-navbar-height});
+
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      width: $admin-left-col-width;
+      flex-shrink: 0;
+      background-color: $admin-left-col-background-color;
+      color: $admin-left-col-text-color;
+      border-right: $admin-card-border;
+      box-shadow: $admin-card-box-shadow;
+      overflow: auto;
+
+      .mat-drawer-inner-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .menu-items {
+        width: 100%;
+        margin-bottom: 10px;
+
+        .menu-item {
+          display: block;
+          width: 100%;
+          padding: 15px;
+          border-left: 5px solid transparent;
+          border-bottom: 1px solid $admin-left-col-border-color;
+          font-size: 1.54rem;
+          font-weight: 400;
+          color: $admin-left-col-text-color;
+          text-transform: capitalize;
+
+          > .mat-icon {
+            position: relative;
+            vertical-align: middle;
+            margin-right: 10px;
+            top: -1px;
+          }
+
+          &:hover {
+            background-color: $admin-left-col-active-color;
+          }
+
+          &.router-link-active {
+            background-color: $admin-left-col-active-color;
+            border-left-color: $site-primary-color-200;
+          }
+        }
+      }
+
+      .version {
+        padding: 5px 8px;
+        font-size: 1.3rem;
+        margin-top: auto;
+      }
+    }
+
+    .content-inner {
+      flex: 1 1 auto;
+      background-color: $site-bg-color-200;
+    }
+  }
+}

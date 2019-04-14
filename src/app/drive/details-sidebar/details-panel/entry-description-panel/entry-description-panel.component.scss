@@ -1,0 +1,14 @@
+@import "../../../../../scss/variables";
+
+entry-description-panel {
+  color: $drive-text-color;
+  display: flex;
+  align-items: center;
+  max-width: 215px;
+
+  .description-text {
+    cursor: text;
+    vertical-align: sub;
+    flex: 1 1 auto;
+  }
+}

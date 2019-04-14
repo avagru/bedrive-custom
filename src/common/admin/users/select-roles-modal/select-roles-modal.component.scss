@@ -1,0 +1,9 @@
+@import "../../../scss/variables";
+
+select-roles-modal {
+  display: block;
+
+  .mat-list-text {
+    text-transform: capitalize;
+  }
+}

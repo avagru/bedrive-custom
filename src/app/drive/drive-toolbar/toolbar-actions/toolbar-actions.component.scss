@@ -1,0 +1,19 @@
+@import "../../../../scss/variables";
+
+toolbar-actions {
+  display: flex;
+  align-items: center;
+  color: $drive-text-color;
+
+  context-actions-container {
+    border-right: 1px solid $site-border-color-200;
+    padding-right: 5px;
+    margin-right: 5px;
+  }
+
+  .always-visible-actions {
+    .active {
+      color: $site-primary-color-200;
+    }
+  }
+}

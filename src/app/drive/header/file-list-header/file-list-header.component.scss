@@ -1,0 +1,15 @@
+@import "../../../../scss/variables";
+
+file-list-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $site-border-color-200;
+  padding-bottom: $file-grid-item-gutter;
+  margin: 0 $file-list-gutter;
+  color: $site-text-color-400;
+  max-height: $file-list-header-height;
+
+  toolbar-actions {
+    margin-left: auto;
+  }
+}

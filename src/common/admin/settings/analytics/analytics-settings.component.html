@@ -1,0 +1,34 @@
+<div class="header">
+    <div class="title">Analytics</div>
+    <div class="subtitle" trans>Configure google analytics integration and credentials.</div>
+</div>
+
+<form class="body many-inputs" (submit)="saveSettings()" ngNativeValidate>
+    <div class="error-group many-inputs no-spacing" id="analytics_group" [class.has-error]="errors.analytics_group">
+        <div class="input-container">
+            <label for="certificate" trans>Google Analytics Private Key File (.p12)</label>
+            <input type="file" id="certificate" name="certificate" #fileInput (change)="setCertificateFile(fileInput.files)" accept=".p12">
+        </div>
+
+        <div class="input-container">
+            <label for="analytics.view_id" trans>Google Analytics View ID</label>
+            <input type="number" name="analytics.view_id" id="analytics.view_id" [(ngModel)]="state.server['analytics_view_id']" required>
+        </div>
+
+        <div class="input-container">
+            <label for="analytics.service_email" trans>Google Analytics Service Email</label>
+            <input type="email" name="analytics.service_email" id="analytics.service_email" [(ngModel)]="state.server['analytics_service_email']" placeholder="account@project.iam.gserviceaccount.com" required>
+        </div>
+
+        <div class="input-container">
+            <label for="analytics.tracking_code" trans>Google Analytics Tracking Code</label>
+            <input name="analytics.tracking_code" id="analytics.tracking_code" [(ngModel)]="state.client['analytics.tracking_code']" required min="1" max="20" placeholder="UA-******-2">
+            <p trans>Google analytics tracking code only, not the whole javascript code snippet.</p>
+        </div>
+
+        <p class="error" *ngIf="errors.analytics_group">{{errors.analytics_group}}</p>
+    </div>
+
+    <button mat-raised-button color="accent" class="button primary update-button" [disabled]="loading" type="submit" trans>Update</button>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+</form>

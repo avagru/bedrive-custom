@@ -1,0 +1,84 @@
+@import "variables";
+
+.input-container {
+  display: block;
+  width: 100%;
+
+  &.has-error {
+    input, select, textarea, .fake-input {
+      border-color: $danger-bg-color;
+    }
+
+    label {
+      color: $danger-bg-color;
+    }
+  }
+
+  .error {
+    margin-top: 6px;
+    color: $danger-bg-color;
+  }
+
+  p {
+    color: $site-text-color-300;
+    font-size: 13px;
+  }
+
+  label {
+    color: inherit;
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  input, select, textarea, .fake-input {
+    width: 100%;
+    height: $input-height;
+    color: inherit;
+    border: 1px solid $site-border-color-200;
+    padding: 12px;
+    line-height: normal;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: inherit;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    &:invalid {
+      box-shadow: none;
+    }
+
+    &:disabled {
+      background-color: #f8f8f8;
+      color: $site-text-color-200;
+    }
+
+    &[readonly] {
+      cursor: pointer;
+    }
+  }
+
+  // fix for firefox "file" input
+  input[type="file"] {
+    height: auto;
+  }
+
+  textarea {
+    height: auto;
+    padding: 10px;
+  }
+
+  .input-with-action {
+    display: flex;
+
+    .mat-flat-button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.many-inputs {
+  > .input-container {
+    margin-bottom: 20px;
+  }
+}

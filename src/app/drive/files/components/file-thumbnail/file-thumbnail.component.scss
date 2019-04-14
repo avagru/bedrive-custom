@@ -1,0 +1,12 @@
+@import "../../../../../scss/variables";
+
+file-thumbnail {
+  display: block;
+  background-color: $site-bg-color-200;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}

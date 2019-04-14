@@ -1,0 +1,10 @@
+{
+  "/secure": {
+    "target": "http://localhost:8000",
+    "secure": false
+  },
+  "/__clockwork": {
+    "target": "http://localhost:8000",
+    "secure": false
+  }
+}

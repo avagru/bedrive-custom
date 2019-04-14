@@ -1,0 +1,25 @@
+ad-host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+  min-height: 1px;
+
+  &:empty {
+    display: none;
+  }
+
+  &.margin-bottom {
+    margin-bottom: 15px;
+  }
+
+  &.margin-top {
+    margin-top: 15px;
+  }
+
+  > *:not(img) {
+    width: 100%;
+    max-width: 1200px;
+  }
+}

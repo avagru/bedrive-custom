@@ -1,0 +1,12 @@
+@import "../../../scss/variables";
+
+custom-page {
+  display: block;
+  min-height: 100vh;
+  flex: 1 1 auto;
+
+  .page-body {
+    padding: 25px;
+    word-break: break-all;
+  }
+}

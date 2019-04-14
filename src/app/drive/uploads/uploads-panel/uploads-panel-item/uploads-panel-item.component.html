@@ -1,0 +1,27 @@
+<ng-container *ngIf="upload.meta$ | async as meta">
+    <file-icon [type]="upload.mime"></file-icon>
+    <div class="content">
+        <div class="meta">
+            <div class="name" [matTooltip]="upload.filename">{{upload.filename}}</div>
+            <div class="time-left" *ngIf="!upload.completed && !upload.pending">
+                {{meta.eta}}
+                <span trans>left</span>
+            </div>
+            <div class="actions">
+                <mat-icon
+                        svgIcon="error"
+                        *ngIf="upload.hasError; else noError"
+                        class="error-icon"
+                        [matTooltip]="meta.error | trans"
+                        [matTooltipDisabled]="!meta.error"
+                        matTooltipPosition="left"
+                ></mat-icon>
+                <ng-template #noError>
+                    <mat-icon svgIcon="check-circle" *ngIf="upload.completed" class="completed-icon"></mat-icon>
+                    <span class="cancel-button" *ngIf="!upload.completed" (click)="upload.cancel()">Cancel</span>
+                </ng-template>
+            </div>
+        </div>
+        <mat-progress-bar mode="determinate" [value]="meta.progress"></mat-progress-bar>
+    </div>
+</ng-container>

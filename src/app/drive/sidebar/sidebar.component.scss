@@ -1,0 +1,75 @@
+@import "../../../scss/variables";
+
+sidebar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: $drive-text-color;
+  background-color: $site-bg-color-200;
+  position: relative;
+
+  sidebar-action-buttons {
+    padding: $file-list-gutter 0;
+  }
+
+  .drag-over.can-drop {
+    background-color: $site-selected-item-bg-color;
+  }
+
+  .sidebar-menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    min-height: inherit;
+    line-height: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: inherit;
+    outline: none;
+    cursor: pointer;
+    -webkit-user-drag: none;
+
+    &.active {
+      color: $site-primary-color-100;
+      background-color: $site-selected-item-bg-color;
+
+      .text {
+        font-weight: 500;
+      }
+    }
+
+    &:not(.active):not(.drag-over):hover {
+      background-color: $site-bg-color-300;
+    }
+
+    .mat-icon:not(.toggle-expansion-icon) {
+      margin-right: 15px;
+    }
+  }
+
+  .sidebar-menu .sidebar-menu-item {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  available-space-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  //need to use "before" to start "base" indent to all folder tree items,
+  //using regular padding would override material tree indent levels
+  folders-tree .mat-tree-node {
+    &:before {
+      display: block;
+      content: " ";
+      width: 24px;
+      flex: 0 0 24px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@import "../../../scss/variables";
+
+.select-plan-modal-container {
+  width: 1200px;
+
+  .mat-dialog-container {
+    background-color: $site-bg-color-200;
+  }
+}
+
+select-plan-modal {
+  display: block;
+
+  .mat-stepper-horizontal {
+    background-color: inherit;
+    margin: 0 50px;
+  }
+
+  select-plan-panel, select-plan-period-panel {
+    padding: 20px 0 5px;
+  }
+}

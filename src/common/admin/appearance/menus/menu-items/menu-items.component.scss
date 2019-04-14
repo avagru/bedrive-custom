@@ -1,0 +1,49 @@
+@import "../../../../scss/variables";
+
+menu-items {
+  display: block;
+
+  .icon-input-container {
+    position: relative;
+
+    input {
+      padding-left: 35px;
+    }
+
+    .mat-icon {
+      position: absolute;
+      top: 36px;
+      left: 8px;
+      color: $icon-color-dark;
+    }
+  }
+
+  .inner {
+    .title {
+      margin: 35px 0 5px;
+    }
+
+    .no-menu-items {
+      font-size: 1.6rem;
+      font-style: italic;
+      color: $site-text-color-300;
+      margin: 10px 0;
+    }
+
+    .action-buttons {
+      margin: 0;
+    }
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+}

@@ -1,0 +1,27 @@
+@import "../../../scss/variables";
+
+drive-toolbar {
+  display: block;
+  padding: ($file-list-gutter / 2) $file-list-gutter;
+  width: 100%;
+  overflow: hidden;
+
+  entry-breadcrumbs {
+    margin: 0 -8px;
+  }
+
+  // only show compact sort icon on smaller screens
+  @media only screen and (max-width: 450px) {
+    entries-sort-button {
+      vertical-align: middle;
+
+      .label, .sort-button-content {
+        display: none;
+      }
+
+      .mobile-sort-button-content {
+        display: inline-block;
+      }
+    }
+  }
+}

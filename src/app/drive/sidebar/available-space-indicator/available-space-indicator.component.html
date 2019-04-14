@@ -1,0 +1,14 @@
+<ng-container *ngIf="(spaceUsedPercent$ | async) >= 0">
+    <mat-progress-bar mode="determinate" [value]="spaceUsedPercent$ | async"></mat-progress-bar>
+
+    <div class="usage-info">
+        <span>{{ spaceUsed$ | async | formattedFileSize }}</span>
+        <span trans>of</span>
+        <span>{{ spaceAvailable$ | async | formattedFileSize }}</span>
+        <span trans>used</span>
+    </div>
+
+    <div class="upgrade-link-container" *ngIf="billingEnabled()">
+        <a routerLink="/billing/upgrade" target="_blank" trans>Upgrade Storage</a>
+    </div>
+</ng-container>

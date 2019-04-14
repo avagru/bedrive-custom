@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="entries" matSort [matSortDisabled]="disableInteractions" (matSortChange)="sortChange($event)">
+  <!-- Image Column -->
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let entry"> <file-thumbnail [file]="entry"></file-thumbnail> </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let entry">
+      <span class="entry-name">{{entry.name}}</span>
+      <mat-icon class="star-icon" svgIcon="star" *ngIf="isStarred(entry)" [matTooltip]="'Starred' | trans"></mat-icon>
+    </td>
+  </ng-container>
+
+  <!-- Updated_at Column -->
+  <ng-container matColumnDef="updated">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="updated_at"> Updated </th>
+    <td mat-cell *matCellDef="let entry"> {{entry.updated_at | formattedDate }} </td>
+  </ng-container>
+
+  <!-- File Size Column -->
+  <ng-container matColumnDef="size">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="file_size"> Size </th>
+    <td mat-cell *matCellDef="let entry"> {{entry.file_size | formattedFileSize}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['image', 'name', 'updated', 'size']"></tr>
+  <tr
+      class="drive-entry"
+      mat-row
+      *matRowDef="let row; columns: ['image', 'name', 'updated', 'size'];"
+      [contextMenu]="{type: 'entry', entry: row}"
+      [disableContextMenu]="disableInteractions"
+      [attr.data-id]="row.id"
+      [folderDropTarget]="row"
+  ></tr>
+</table>

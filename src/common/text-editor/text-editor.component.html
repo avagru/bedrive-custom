@@ -1,0 +1,97 @@
+<div class="editor-header">
+    <div class="toolbar-row">
+        <div class="actions" *ngIf="!basic && !showAdvancedControls && currentUser.hasPermission('files.create')">
+            <button class="no-style editor-button" type="button" [matTooltip]="'Add Attachment' | trans" (click)="openFileUploadDialog()">
+                <mat-icon svgIcon="attachment"></mat-icon>
+            </button>
+        </div>
+
+        <div class="actions" *ngIf="!basic">
+            <button type="button" class="no-style editor-button" (click)="execCommand('codesample')" [matTooltip]="'Insert Code Sample' | trans"><mat-icon svgIcon="code"></mat-icon></button>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="no-style editor-button" (click)="execCommand('undo')" [class.disabled]="!hasUndo()" [matTooltip]="'Undo' | trans"><mat-icon svgIcon="undo"></mat-icon></button>
+            <button type="button" class="no-style editor-button" (click)="execCommand('redo')" [class.disabled]="!hasRedo()" [matTooltip]="'Redo' | trans"><mat-icon svgIcon="redo"></mat-icon></button>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="no-style editor-button" (click)="execCommand('bold')" [class.active]="queryCommandState('bold')" [matTooltip]="'Bold' | trans"><mat-icon svgIcon="format-bold"></mat-icon></button>
+            <button type="button" class="no-style editor-button" (click)="execCommand('italic')" [class.active]="queryCommandState('italic')" [matTooltip]="'Italic' | trans"><mat-icon svgIcon="format-italic"></mat-icon></button>
+            <button type="button" class="no-style editor-button" (click)="execCommand('underline')" [class.active]="queryCommandState('underline')" [matTooltip]="'Underline' | trans"><mat-icon svgIcon="format-underlined"></mat-icon></button>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="no-style editor-button" (click)="execCommand('insertunorderedlist')" [class.active]="queryCommandState('unorderedlist')" [matTooltip]="'Unordered List' | trans">
+                <mat-icon svgIcon="format-list-bulleted"></mat-icon>
+            </button>
+            <button type="button" class="no-style editor-button" (click)="execCommand('insertorderedlist')" [class.active]="queryCommandState('orderedlist')" [matTooltip]="'Ordered List' | trans">
+                <mat-icon svgIcon="format-list-numbered"></mat-icon>
+            </button>
+        </div>
+
+        <div class="actions" *ngIf="!basic">
+            <button type="button" class="no-style editor-button" (click)="execCommand('mceLink')" [matTooltip]="'Insert Link' | trans"><mat-icon svgIcon="link"></mat-icon></button>
+            <button type="button" class="no-style editor-button image-modal-button" (click)="openInsertImageModal()" *ngIf="currentUser.hasPermission('files.create')" [matTooltip]="'Insert Image' | trans">
+                <mat-icon svgIcon="image"></mat-icon>
+            </button>
+        </div>
+
+        <ng-content select="[customButtons]"></ng-content>
+
+        <div class="actions last">
+            <button type="button" class="no-style editor-button" (click)="execCommand('removeformat')" [matTooltip]="'Remove Formatting' | trans"><mat-icon svgIcon="format-clear"></mat-icon></button>
+        </div>
+
+        <ng-content select="[header]"></ng-content>
+    </div>
+    <div class="toolbar-row" *ngIf="showAdvancedControls">
+        <div class="actions">
+            <button type="button" [matMenuTriggerFor]="insertMenu" class="no-style editor-button text-button insert-button">Insert <mat-icon svgIcon="arrow-drop-down" class="caret"></mat-icon></button>
+            <mat-menu #insertMenu>
+                <div mat-menu-item (click)="execCommand('InsertHorizontalRule')"><mat-icon svgIcon="remove"></mat-icon> Horizontal Line</div>
+                <div mat-menu-item (click)="execCommand('mceLink')"><mat-icon svgIcon="link"></mat-icon> Link</div>
+                <div mat-menu-item (click)="execCommand('mceMedia')"><mat-icon svgIcon="videocam"></mat-icon> Media</div>
+                <div mat-menu-item (click)="insertInfoContainer('important')" trans><mat-icon svgIcon="star"></mat-icon> Important</div>
+                <div mat-menu-item (click)="insertInfoContainer('warning')" trans><mat-icon svgIcon="warning"></mat-icon> Warning</div>
+                <div mat-menu-item (click)="insertInfoContainer('note')" trans><mat-icon svgIcon="note"></mat-icon> Note</div>
+            </mat-menu>
+        </div>
+        <div class="actions">
+            <button type="button" [matMenuTriggerFor]="formatMenu" class="no-style editor-button text-button format-button">Format <mat-icon svgIcon="arrow-drop-down" class="caret"></mat-icon></button>
+            <mat-menu #formatMenu class="scroll-container format-menu menu-with-alt-text" customScrollbar>
+                <div mat-menu-item (click)="execCommand('FormatBlock', 'h1')"><div class="text">Heading 1</div> <div class="alt-text">Ctrl+Alt+1</div></div>
+                <div mat-menu-item (click)="execCommand('FormatBlock', 'h2')"><div class="text">Heading 2</div> <div class="alt-text">Ctrl+Alt+2</div></div>
+                <div mat-menu-item (click)="execCommand('FormatBlock', 'h3')"><div class="text">Heading 3</div> <div class="alt-text">Ctrl+Alt+3</div></div>
+                <div mat-menu-item (click)="execCommand('strikethrough')"><div class="text">Strikethrough</div> <div class="alt-text">Alt+Shift+5</div></div>
+                <div mat-menu-item (click)="execCommand('superscript')"><div class="text">Superscript</div> <div class="alt-text">Ctrl+.</div></div>
+                <div mat-menu-item (click)="execCommand('subscript')"><div class="text">Subscript</div> <div class="alt-text">Ctrl+,</div></div>
+                <div mat-menu-item (click)="execCommand('mceBlockQuote')"><div class="text">Blockquote</div> <div class="alt-text">Ctrl+Alt+B</div></div>
+                <div mat-menu-item (click)="execCommand('FormatBlock', 'p')"><div class="text">Paragraph</div> <div class="alt-text">Ctrl+Alt+0</div></div>
+            </mat-menu>
+        </div>
+        <div class="actions">
+            <button type="button" [matMenuTriggerFor]="colorMenu" class="no-style editor-button text-button color-button" #colorPickerOrigin>
+                Color <mat-icon svgIcon="arrow-drop-down" class="caret"></mat-icon>
+            </button>
+            <mat-menu #colorMenu class="indent color-dropdown">
+                <div mat-menu-item class="text-color-item" (click)="showColorPicker('ForeColor', colorPickerOrigin)"><mat-icon svgIcon="format-color-text"></mat-icon> Text Color</div>
+                <div mat-menu-item class="bg-color-item" (click)="showColorPicker('HiliteColor', colorPickerOrigin)"><mat-icon svgIcon="format-color-fill"></mat-icon> Background Color</div>
+            </mat-menu>
+        </div>
+        <div class="actions">
+            <button type="button" class="no-style editor-button" (click)="execCommand('justifyLeft')" [class.active]="queryCommandState('justifyLeft')" [matTooltip]="'Unordered List' | trans"><mat-icon svgIcon="format-align-left"></mat-icon></button>
+            <button type="button" class="no-style editor-button" (click)="execCommand('justifyCenter')" [class.active]="queryCommandState('justifyCenter')" [matTooltip]="'Unordered List' | trans"><mat-icon svgIcon="format-align-center"></mat-icon></button>
+            <button type="button" class="no-style editor-button" (click)="execCommand('justifyRight')" [class.active]="queryCommandState('justifyRight')" [matTooltip]="'Unordered List' | trans"><mat-icon svgIcon="format-align-right"></mat-icon></button>
+        </div>
+        <div class="actions editor-toggle-buttons">
+            <button type="button" class="no-style editor-button visual-mode-button" [class.active]="activeEditor === 'visual'" (click)="showVisualEditor()" trans>Visual</button>
+            <button type="button" class="no-style editor-button source-mode-button" [class.active]="activeEditor === 'source'" (click)="showSourceEditor()" trans>Source</button>
+        </div>
+    </div>
+</div>
+
+<textarea class="source-textarea" #sourceArea rows="8" [style.min-height]="minHeight" style="display: none" [(ngModel)]="sourceAreaModel"></textarea>
+<textarea class="visual-textarea" #visualArea rows="8" [style.min-height]="minHeight"></textarea>
+
+<ng-content select="[footer]"></ng-content>

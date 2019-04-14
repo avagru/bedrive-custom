@@ -1,0 +1,21 @@
+<form class="form connect-form">
+    <div class="logo">
+        <img src="assets/images/p.jpg">
+    </div>
+    <p class="alert-danger" *ngIf="errors.email">{{errors.email}}</p>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Enter your email" [(ngModel)]="model.email" name="email" required>
+    </mat-form-field>
+    <p class="alert-danger" *ngIf="errors.password">{{errors.password}}</p>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Enter your password" [(ngModel)]="model.password" name="password" [type]="model.hide ? 'password' : 'text'" required>
+        <mat-icon matSuffix (click)="model.hide = !model.hide">{{model.hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <div class="form-group text-center">
+        <mat-checkbox>Remember me!</mat-checkbox>
+    </div>
+    <div class="form-group text-center">
+        <button mat-raised-button color="warn" (click)="login()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="login()">Connect</button>
+    </div>
+</form>

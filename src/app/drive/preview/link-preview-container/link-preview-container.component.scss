@@ -1,0 +1,29 @@
+@import "../../../../scss/variables";
+
+$filePreviewToolbarHeight: 60px;
+
+link-preview-container {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: $site-text-color-100;
+  position: relative;
+  overflow: hidden;
+
+  &.folder-link {
+    background-color: $site-bg-color-100;
+  }
+
+  &.file-link {
+    background-color: rgba(0,0,0,0.9);
+  }
+
+  preview-container {
+    margin: $filePreviewToolbarHeight 0;
+    min-height: calc(100% - #{$filePreviewToolbarHeight * 2});
+  }
+
+  ad-host {
+    margin-top: 80px;
+  }
+}

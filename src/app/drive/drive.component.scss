@@ -1,0 +1,111 @@
+@import "../../scss/variables";
+$sidebar-width: 220px;
+$navbar-height: 65px;
+drive {
+    display: block;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    material-navbar {
+        box-shadow: none;
+        height: $navbar-height;
+    }
+    .loading-overlay-container {
+        position: relative;
+        height: calc(100% - #{$file-list-header-height + $drive-toolbar-height - 4});
+    }
+    .has-rek {
+        ad-host {
+            margin-top: 25px;
+        }
+        .loading-overlay-container {
+            height: calc(100% - #{$file-list-header-height + $drive-toolbar-height + 175 - 4});
+        }
+    }
+    .drive-container {
+        height: calc(100% - #{$navbar-height});
+    }
+    .mat-sidenav-container {
+        width: 100%;
+        height: calc(100% - #{$navbar-height});
+        .left-sidebar {
+            width: $sidebar-width;
+            flex: 0 0 $sidebar-width;
+            border-right: 1px solid $site-border-color-200;
+        }
+        .right-sidebar {
+            width: 300px;
+            flex: 0 0 300px;
+            border-left: 1px solid $site-border-color-200;
+            background-color: $site-bg-color-100;
+            color: $site-text-color-400;
+        }
+        .mat-sidenav-content {
+            position: relative;
+            width: auto;
+            overflow: hidden;
+            height: 100%;
+            background-color: $site-bg-color-100;
+        }
+    }
+    .files-container {
+        height: calc(100% - 4px);
+        border: 2px solid transparent;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        padding: ($file-list-gutter - 2px);
+        //lower opacity of selected items that are being dragged
+        &.dragging .selected {
+            opacity: 0.4;
+        }
+        &.file-over-dropzone {
+            border-color: $site-primary-color-100;
+            background-color: $site-selected-item-bg-color;
+        }
+    }
+    material-navbar .right-side-actions{
+        margin-left: unset !important; 
+    }
+    .connect-btn {
+        color: white;
+        margin-left: auto;
+        width: unset !important;
+        text-align: center;
+    }
+    .connect-container{
+        .mat-sidenav-container{
+            height: 100%;
+        }
+        height: calc(100% - #{$navbar-height});
+        margin-right: 0px !important;
+        .col-md-5{
+            border-left: 1px solid #e0e0e0;
+            .connect-form{
+                max-width: 400px;
+                margin: 235px auto;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0px 2px 4px 1px #070c48;
+                font-size: 16px;      
+                .logo{
+                    img{
+                        border-radius: 50%;
+                        width:150px;
+                        margin: -90px auto 0px;
+                        box-shadow: 0px 2px 2px 1px #070c48;
+                    }
+                }
+                .full-width {
+                  width: 100%;
+                }
+                button{
+                    width: 120px;
+                }
+            }
+        }
+    }
+    .mat-icon{
+        vertical-align: baseline !important;
+    }
+}

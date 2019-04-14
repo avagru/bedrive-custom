@@ -1,0 +1,35 @@
+<div class="header">
+    <div class="title">Recaptcha</div>
+    <div class="subtitle" trans>Configure google recaptcha integration and credentials.</div>
+</div>
+
+<form class="body many-inputs" (submit)="saveSettings()" ngNativeValidate>
+
+    <div class="setting-toggle-container">
+        <mat-slide-toggle name="recaptcha.enable_for_registration" id="recaptcha.enable_for_registration" [(ngModel)]="state.client['recaptcha.enable_for_registration']" trans>Registration Recaptcha</mat-slide-toggle>
+        <p trans>Enable recaptcha integration for registration page.</p>
+    </div>
+
+    <div class="setting-toggle-container">
+        <mat-slide-toggle name="recaptcha.enable_for_contact" id="recaptcha.enable_for_contact" [(ngModel)]="state.client['recaptcha.enable_for_contact']" trans>Contact Recaptcha</mat-slide-toggle>
+        <p trans>Enable recaptcha integration for "contact us" page.</p>
+    </div>
+
+    <div class="error-group many-inputs no-spacing" id="recaptcha-group" [class.has-error]="errors.recaptcha_group">
+        <div class="input-container">
+            <label for="recaptcha.site_key" trans>Recaptcha V3 Site Key</label>
+            <input name="recaptcha.site_key" id="recaptcha.site_key" [(ngModel)]="state.client['recaptcha.site_key']" required>
+        </div>
+
+        <div class="input-container" [class.has-error]="errors['recaptcha.secret_key']">
+            <label for="recaptcha.secret_key" trans>Recaptcha V3 Secret Key</label>
+            <input name="recaptcha.secret_key" id="recaptcha.secret_key" [(ngModel)]="state.client['recaptcha.secret_key']" required>
+            <p class="error" *ngIf="errors['recaptcha.secret_key']">{{errors['recaptcha.secret_key']}}</p>
+        </div>
+
+        <p class="error" *ngIf="errors.recaptcha_group">{{errors.recaptcha_group}}</p>
+    </div>
+
+    <button mat-raised-button color="accent" class="button primary update-button" [disabled]="loading" type="submit" trans>Update</button>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+</form>

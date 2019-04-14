@@ -1,0 +1,8 @@
+upload-progress-bar {
+  display: block;
+
+  // fix "jerky" animations bug on angular material
+  .mat-progress-bar .mat-progress-bar-fill {
+    transition: transform 130ms ease;
+  }
+}

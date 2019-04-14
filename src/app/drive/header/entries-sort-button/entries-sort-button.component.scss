@@ -1,0 +1,72 @@
+@import "../../../../scss/variables";
+
+entries-sort-button {
+  display: inline-block;
+
+  .label {
+    color: $site-text-color-300;
+    padding-right: 3px;
+  }
+
+  .arrow-icon {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+  }
+
+  button:disabled {
+    color: $site-text-color-300;
+    cursor: default;
+
+    .mat-icon {
+      display: none;
+    }
+  }
+
+  .mobile-sort-button-content {
+    display: none;
+  }
+
+
+
+}
+
+
+.drive-sort-menu {
+  .mat-menu-item {
+    padding-left: 8px;
+    line-height: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+
+    &.active {
+      color: $site-primary-color-200;
+
+      .mat-icon {
+        visibility: visible;
+        color: inherit;
+      }
+    }
+
+    .mat-icon {
+      visibility: hidden;
+      margin-right: 0;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .separator {
+    height: 1px;
+    background-color: $site-border-color-200;
+    margin: 5px 0 20px;
+  }
+
+  .title {
+    text-transform: uppercase;
+    padding-left: 32px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+}

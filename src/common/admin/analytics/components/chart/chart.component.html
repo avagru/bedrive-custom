@@ -1,0 +1,12 @@
+<div class="chart-header">
+    <ng-content select=".title"></ng-content>
+    <ng-content select=".subtitle"></ng-content>
+</div>
+
+<div #chartPlaceholder class="ct-chart ct-perfect-fourth {{chartConfig?.type}}-chart chart-body"></div>
+
+<ng-content select=".chart-legend"></ng-content>
+
+<div class="chart-legend" *ngIf="chartConfig?.legend">
+    <div class="legend-item" *ngFor="let item of chartConfig.labels">{{item}}</div>
+</div>

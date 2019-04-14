@@ -1,0 +1,15 @@
+@import "../../../../scss/variables";
+
+available-space-indicator {
+  display: block;
+  margin-top: 25px;
+
+  .usage-info {
+    margin: 5px 0;
+    font-size: 1.3rem;
+  }
+
+  .upgrade-link-container {
+    color: $link-color;
+  }
+}

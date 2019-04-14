@@ -1,0 +1,71 @@
+@import "../../../../scss/variables";
+
+main-searchbar {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  color: $drive-text-color;
+  border-radius: 3px;
+
+  .input-container input {
+    font-size: 1.6rem;
+    padding: 0 50px;
+    outline: none;
+    border: none;
+    transition: background-color ease-in 100ms;
+    background-color: $site-bg-color-100;
+
+    &:focus {
+      @include mat-elevation(1);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: 1px solid $site-border-color-100;
+    }
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 2px;
+    left: 6px;
+  }
+
+  .cancel-icon {
+    position: absolute;
+    top: 3px;
+    right: 6px;
+  }
+}
+
+.file-types-autocomplete.mat-autocomplete-panel {
+  max-height: 350px;
+  color: $site-text-color-400;
+  background-color: $site-bg-color-100;
+
+  .mat-option {
+    line-height: normal;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+  }
+
+  .mat-option-text {
+    display: flex;
+    align-items: center;
+
+    file-icon, .date {
+      align-self: start;
+    }
+
+    .owner {
+      color: $site-text-color-300;
+    }
+
+    file-icon {
+      margin-right: 10px;
+    }
+
+    .date {
+      margin-left: auto;
+    }
+  }
+}

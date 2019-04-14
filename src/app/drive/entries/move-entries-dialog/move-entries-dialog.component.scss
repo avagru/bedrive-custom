@@ -1,0 +1,16 @@
+@import "../../../../scss/variables";
+
+.move-entries-dialog-container {
+  width: 350px;
+}
+
+move-entries-dialog {
+  folders-tree {
+    border: 1px solid $site-border-color-100;
+    border-radius: 3px;
+  }
+
+  .mat-dialog-actions {
+    margin-top: 15px;
+  }
+}

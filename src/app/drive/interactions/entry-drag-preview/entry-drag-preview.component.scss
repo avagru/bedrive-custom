@@ -1,0 +1,28 @@
+@import "../../../../scss/variables";
+
+entry-drag-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: $site-selected-item-bg-color;
+  color: $site-primary-color-100;
+  width: 185px;
+  @include mat-elevation(3);
+  pointer-events: none;
+
+  .selected-entry-count {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    font-weight: 500;
+    background-color: $site-accent-color;
+    color: $site-text-color-100;
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    border-radius: 50%;
+    @include mat-elevation(2);
+  }
+}

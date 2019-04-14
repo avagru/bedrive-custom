@@ -1,0 +1,74 @@
+<div class="header">
+    <div class="title" trans>User Uploads</div>
+    <div class="subtitle" trans>Configure size and type of files that users are able to upload.</div>
+</div>
+
+<form class="body many-inputs" (ngSubmit)="saveSettings()" ngNativeValidate>
+    <div class="input-container">
+        <label for="uploads_disk" trans>Uploads Storage Method</label>
+        <select name="uploads_disk" id="uploads_disk" [(ngModel)]="state.server['uploads_disk']" (ngModelChange)="clearErrors()">
+            <option value="uploads_local">Local Disk (Default)</option>
+            <option value="uploads_s3">Amazon S3</option>
+            <option value="uploads_ftp">FTP</option>
+            <option value="uploads_digitalocean">DigitalOcean</option>
+            <option value="uploads_backblaze">Backblaze</option>
+            <option value="uploads_dropbox">Dropbox</option>
+            <option value="uploads_rackspace">Rackspace</option>
+        </select>
+        <p trans>How and where user uploads should be stored.</p>
+    </div>
+
+    <div class="error-group" id="storage_group" [ngSwitch]="state.server['uploads_disk']" [class.hidden]="state.server['uploads_disk'] === 'uploads_local'" [class.has-error]="errors.storage_group">
+        <ftp-form class="many-inputs" *ngSwitchCase="'uploads_ftp'"></ftp-form>
+        <dropbox-form class="many-inputs" *ngSwitchCase="'uploads_dropbox'"></dropbox-form>
+        <rackspace-form class="many-inputs" *ngSwitchCase="'uploads_rackspace'"></rackspace-form>
+        <s3-form class="many-inputs" *ngSwitchCase="'uploads_s3'"></s3-form>
+        <digitalocean-form class="many-inputs" *ngSwitchCase="'uploads_digitalocean'"></digitalocean-form>
+        <backblaze-form class="many-inputs" *ngSwitchCase="'uploads_backblaze'"></backblaze-form>
+        <p class="error" *ngIf="errors.storage_group" [innerHTML]="errors.storage_group"></p>
+    </div>
+
+    <div class="widget widget-important">
+        <div class="title" trans>Important</div>
+        <p trans>"Maximum file size" only controls max size on the site. Current maximum upload size on your server is <strong>{{serverMaxUploadSize}}</strong>.</p>
+    </div>
+
+    <div class="input-container">
+        <label for="uploads.max_size" trans>Maximum file size</label>
+        <space-input name="uploads.max_size" id="uploads.max_size" [(ngModel)]="state.client['uploads.max_size']"></space-input>
+        <p trans>Maximum size for a single file user can upload.</p>
+    </div>
+
+    <div class="input-container">
+        <label for="uploads.available_space" trans>Available Space</label>
+        <space-input name="uploads.available_space" id="uploads.available_space" [(ngModel)]="state.client['uploads.available_space']"></space-input>
+        <p trans>Disk space each user uploads are allowed to take up. This can be overridden per user.</p>
+    </div>
+
+    <div class="input-container">
+        <label for="allowed_extensions" trans>Allowed file types</label>
+        <chip-input
+            id="allowed_extensions"
+            name="allowed_extensions"
+            placeholder="All types allowed..."
+            trans-placeholder
+            [(ngModel)]="allowedExtensions"
+        ></chip-input>
+        <p trans>List of allowed file types (jpg, mp3, pdf etc.). Leave empty to allow all file types.</p>
+    </div>
+
+    <div class="input-container">
+        <label for="blocked_extensions" trans>Blocked file types</label>
+        <chip-input
+            id="blocked_extensions"
+            name="blocked_extensions"
+            placeholder="No types blocked..."
+            trans-placeholder
+            [(ngModel)]="blockedExtensions"
+        ></chip-input>
+        <p trans>Prevent uploading of these file types, even if they are allowed above.</p>
+    </div>
+
+    <button mat-raised-button color="accent" class="update-button" type="submit" [disabled]="loading" trans>Update</button>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+</form>

@@ -1,0 +1,104 @@
+@import "../../../../scss/variables";
+
+folder-preview {
+  display: block;
+
+  .files-container {
+    max-width: $xlarge;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+  }
+
+  .toolbar {
+    display: flex;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $site-border-color-200;
+    color: $site-text-color-400;
+
+    @media only screen and (max-width: $medium) {
+      display: block;
+
+      .breadcrumb {
+        margin-bottom: 10px;
+      }
+    }
+
+    .action-icon {
+      color: $icon-color-dark;
+    }
+
+    .breadcrumb {
+      flex: 1 1 auto;
+    }
+
+    .actions {
+      margin-left: auto;
+    }
+
+    .action-separator {
+      display: inline-block;
+      vertical-align: middle;
+      background-color: $site-border-color-200;
+      width: 1px;
+      height: 40px;
+      margin: 0 12px;
+    }
+  }
+
+  .drive-entry {
+    cursor: pointer;
+    transition-property: all;
+
+    &:hover {
+      @include mat-elevation(3);
+    }
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+
+    .breadcrumb-item {
+      font-size: 1.8rem;
+      color: $site-text-color-400;
+      border-radius: 4px;
+      padding: 4px 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $site-bg-color-300;
+      }
+
+      &:first-of-type {
+        text-transform: capitalize;
+      }
+
+      .mat-icon {
+        vertical-align: middle;
+        color: $site-text-color-300;
+        margin-left: -5px;
+      }
+    }
+
+    .separator {
+      color: $site-text-color-300;
+    }
+  }
+
+  no-results-message {
+    margin-top: 40px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    entries-sort-button .label {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<appearance-panel-meta [path]="['Homepage']" (backClick)="appearance.closeActivePanel()"></appearance-panel-meta>
+
+<div class="appearance-panel-content many-inputs">
+    <div class="slider-list-container">
+        <div class="input-container">
+            <label for="slider-list" trans>Manage Lists</label>
+            <div class="input-wrapper">
+                <input id="slider-list" [formControl]="searchControl" [matAutocomplete]="sliderAuto" placeholder="Add a list..." trans-placeholder #inputEl>
+                <button type="submit" mat-icon-button class="search-button">
+                    <mat-icon svgIcon="search"></mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <mat-autocomplete #sliderAuto="matAutocomplete" class="search-list-autocomplete" (optionSelected)="selectResult($event)" [autoActiveFirstOption]="true" [displayWith]="displayFn">
+            <mat-option *ngFor="let result of results$ | async" [value]="result">{{result.name}}</mat-option>
+        </mat-autocomplete>
+    </div>
+
+    <p trans>First list will be used as a slider, rest will be displayed as homepage content.</p>
+
+    <a mat-raised-button color="accent" routerLink="/lists/new" target="_blank" trans>New List</a>
+
+    <loading-indicator [isVisible]="loading$ | async" class="overlay"></loading-indicator>
+
+    <div class="lists" cdkDropList (cdkDropListDropped)="reorderLists($event)">
+        <div class="list" *ngFor="let list of homepageLists$ | async" cdkDrag>
+            <button mat-icon-button cdkDragHandle>
+                <mat-icon svgIcon="drag-handle"></mat-icon>
+            </button>
+            <div class="name">{{list.name}}</div>
+            <div class="actions">
+                <a mat-icon-button [routerLink]="['/lists', list.id, 'edit']" target="_blank">
+                    <mat-icon svgIcon="edit"></mat-icon>
+                </a>
+                <button mat-icon-button (click)="removeList(list)">
+                    <mat-icon svgIcon="delete"></mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+@import "../../../../scss/variables";
+@import "../../chartist/chartist-styles";
+
+$stats-header-height: 94px + 25px;
+
+analytics-container {
+  display: block;
+  padding: 25px;
+  overflow: hidden;
+
+  .chart-row {
+    display: flex;
+    height: 400px;
+    margin-bottom: 25px;
+  }
+}

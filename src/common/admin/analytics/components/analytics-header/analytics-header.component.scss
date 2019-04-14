@@ -1,0 +1,54 @@
+@import "../../../../../scss/variables";
+
+analytics-header {
+  display: flex;
+  margin: 0 -6px 25px;
+
+  @media only screen and (max-width: $medium) {
+    display: none;
+  }
+
+  .stat {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-right: 25px;
+    border-radius: 4px;
+    height: 110px;
+    align-items: center;
+    color: $site-text-color-400;
+    background-color: $site-text-color-100;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    padding: 0 15px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    .details {
+      margin-left: 10px;
+
+      .count {
+        font-size: 2.3rem;
+        font-family: "Montserrat", sans-serif;
+        color: $site-text-color-400;
+      }
+
+      .name {
+        font-size: 1.4rem;
+        color: $site-text-color-300;
+
+        .capitalize {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .mat-icon {
+      color: $site-accent-color;
+      opacity: 0.8;
+      width: 60px;
+      height: 60px;
+    }
+  }
+}

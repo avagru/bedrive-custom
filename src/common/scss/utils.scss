@@ -1,0 +1,79 @@
+@import "../../scss/variables";
+
+.scroll-container, .scroll-container-x {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &.ps {
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+.scroll-container-x {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+img {
+  display: block;
+}
+
+.block {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+
+  &.hover-underline {
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+h1,h2,h3,h4,h5 {
+  font-weight: 500;
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visually-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.error {
+  color: $danger-bg-color;
+
+  &.margin-bottom {
+    margin-bottom: 20px;
+  }
+
+  &.margin-top {
+    margin-top: 20px;
+  }
+}
+
+//fix file dropzone firing "dragleave" event when hovering its child
+.file-over-dropzone * {
+  pointer-events: none !important;
+}
+
+.material-panel {
+  border: $admin-card-border;
+  box-shadow: $admin-card-box-shadow;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: $admin-table-background-color;
+  padding: 15px;
+}

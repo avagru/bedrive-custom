@@ -1,0 +1,62 @@
+<div class="spacing-container">
+    <section class="admin-pill-nav solid with-actions">
+        <div class="new-role">
+            <button mat-raised-button color="accent" (click)="showCrupdateRoleModal()" *ngIf="currentUser.hasPermission('roles.create')" trans>New Role</button>
+        </div>
+        <div class="nav-item" *ngFor="let role of roles" (click)="selectRole(role)" [class.selected]="selectedRole == role">
+            <div class="name">{{role.name}}</div>
+
+            <div class="actions">
+                <button class="no-style" [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+                    <mat-icon svgIcon="settings" class="size-22"></mat-icon>
+                </button>
+                <mat-menu #actionsMenu>
+                    <div mat-menu-item (click)="showCrupdateRoleModal(role)" *ngIf="currentUser.hasPermission('roles.update')" trans>Edit</div>
+                    <div mat-menu-item (click)="maybeDeleteRole(role)" *ngIf="currentUser.hasPermission('roles.delete')" trans>Delete</div>
+                </mat-menu>
+            </div>
+        </div>
+    </section>
+
+    <data-table [dataSource]="dataSource" itemsName="users" matSort>
+        <ng-container headerActions *ngIf="currentUser.hasPermission('roles.update')">
+            <button class="assign-users-button" mat-raised-button color="accent" (click)="showAssignUsersModal()" [disabled]="!canAssignUsers()" trans>Assign Users</button>
+            <button mat-raised-button color="accent" (click)="maybeDetachUsers()" [disabled]="!dataSource.anyRowsSelected()" trans>Unassign Users</button>
+        </ng-container>
+
+        <ng-container matColumnDef="avatar">
+            <mat-header-cell *matHeaderCellDef trans>Avatar</mat-header-cell>
+            <mat-cell *matCellDef="let user"> <img [src]="user.avatar"> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header trans>Email</mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="first_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header trans>First Name</mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.first_name ? user.first_name : '-'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="last_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header trans>Last Name</mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.last_name ? user.last_name : '-'}} </mat-cell>
+        </ng-container>
+
+        <no-results-message *ngIf="!selectedRole.guests && dataSource.isEmpty()">
+            <span primary-text trans>Nothing To Display.</span>
+            <span secondary-text trans>There are no users in this role yet.</span>
+        </no-results-message>
+
+        <no-results-message *ngIf="selectedRole.guests">
+            <span primary-text trans>Guests Role</span>
+            <span secondary-text trans>Users can't be assigned to this role.</span>
+        </no-results-message>
+
+        <no-results-message *ngIf="!selectedRole">
+            <span primary-text trans>No role selected</span>
+            <span secondary-text trans>Select a role from the left.</span>
+        </no-results-message>
+    </data-table>
+</div>

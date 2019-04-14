@@ -1,0 +1,23 @@
+@import "../../../../scss/variables";
+
+$filePreviewToolbarHeight: 60px;
+
+.file-preview-overlay-container {
+  width: 100%;
+  height: 100%;
+}
+
+file-preview-overlay {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  color: $site-text-color-100;
+  overflow: auto;
+  position: relative;
+
+  preview-container {
+    margin: $filePreviewToolbarHeight 0;
+    min-height: calc(100% - #{$filePreviewToolbarHeight * 2});
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../../../scss/variables";
+
+entries-container {
+  display: block;
+  height: 100%;
+  outline: none;
+
+  .no-results-message {
+    height: 100%;
+  }
+}

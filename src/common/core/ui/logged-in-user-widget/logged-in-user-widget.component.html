@@ -1,0 +1,53 @@
+<ng-container *ngIf="(currentUser.isLoggedIn() || (breakpoints.isMobile$ | async)); else authButtons">
+    <div class="menu-trigger" [matMenuTriggerFor]="menu">
+        <img class="avatar" src="{{currentUser.get('avatar')}}">
+
+        <div class="email">{{currentUser.get('email')}}</div>
+        <mat-icon svgIcon="arrow-drop-down" class="dropdown-icon"></mat-icon>
+
+        <button class="no-style mobile-toggle"><mat-icon svgIcon="person"></mat-icon></button>
+    </div>
+
+    <mat-menu #menu="matMenu" [overlapTrigger]="false" class="logged-in-user-widget-menu">
+       <ng-container *ngIf="currentUser.isLoggedIn(); else guestMenuItems">
+           <a class="admin-link" mat-menu-item routerLink="/admin" *ngIf="currentUser.hasPermission('admin.access')">
+               <mat-icon class="mat-icon" svgIcon="dashboard"></mat-icon>
+               <span trans>Admin Area</span>
+           </a>
+
+           <ng-content></ng-content>
+
+           <ng-container *ngFor="let item of config.get('vebto.navbar.dropdownItems')">
+               <a mat-menu-item [routerLink]="item.route" *ngIf="shouldShowMenuItem(item)">
+                   <mat-icon [svgIcon]="item.icon"></mat-icon>
+                   <span trans>{{item.name}}</span>
+               </a>
+           </ng-container>
+
+           <a class="account-settings-link" mat-menu-item routerLink="/account/settings">
+               <mat-icon class="mat-icon" svgIcon="settings"></mat-icon>
+               <span trans>Account Settings</span>
+           </a>
+
+           <a class="subscription-link" mat-menu-item routerLink="/billing/subscription" *ngIf="currentUser.isSubscribed()">
+               <mat-icon class="mat-icon" svgIcon="credit-card"></mat-icon>
+               <span trans>Subscription</span>
+           </a>
+
+           <div class="logout-item" mat-menu-item (click)="auth.logOut()">
+               <mat-icon class="mat-icon" svgIcon="exit-to-app"></mat-icon>
+               <span trans>Log Out</span>
+           </div>
+       </ng-container>
+
+        <ng-template #guestMenuItems>
+            <a routerLink="/login" mat-menu-item trans>Login</a>
+            <a routerLink="/register" mat-menu-item trans>Register</a>
+        </ng-template>
+    </mat-menu>
+</ng-container>
+
+<ng-template #authButtons>
+    <a *ngIf="!config.get('registration.disable')" routerLink="/register" mat-button trans>Register</a>
+    <a routerLink="/login" mat-raised-button [color]="config.get('vebto.auth.color')" trans>Login</a>
+</ng-template>

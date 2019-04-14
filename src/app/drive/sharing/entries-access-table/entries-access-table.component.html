@@ -1,0 +1,25 @@
+<div class="header" trans>Who has access</div>
+<div class="users-list">
+    <div class="list-item" *ngFor="let user of users | async; trackBy: trackByUser" [class.removed]="user.removed" [@flyInOut]="'in'">
+        <img [src]="user.avatar">
+        <div class="text">
+            <div class="display_name">{{user.display_name}}</div>
+            <div class="email">{{user.email}}</div>
+        </div>
+        <div class="actions">
+            <span class="owner-label" *ngIf="user.owns_entry || (currentUser.getModel().id === user.id); else permissionSelector" trans>
+                {{ user.owns_entry ? 'Owner' : 'You' }}
+            </span>
+
+            <ng-template #permissionSelector>
+                <sharing-permissions-button [permissions]="user.entry_permissions" (change)="updateUserPermissions(user, $event)"></sharing-permissions-button>
+                <button mat-icon-button [disabled]="loading$ | async" (click)="removeUser(user)">
+                    <mat-icon svgIcon="close"></mat-icon>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <button mat-flat-button color="primary" (click)="saveChanges()" [disabled]="loading$ | async" [class.visually-hidden]="!(dirty | async)" trans>Save Changes</button>
+</div>

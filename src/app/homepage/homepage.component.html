@@ -1,0 +1,18 @@
+<div class="bg-container" [style.background-image]="backgroundStyle()">
+    <nav>
+        <a routerLink="/" class="logo-container">
+            <img class="logo" *ngIf="settings.get('branding.logo_light')" [src]="settings.getBaseUrl(true) + settings.get('branding.logo_light')">
+            <div class="text-logo" *ngIf="!settings.get('branding.logo_light')">{{settings.get('branding.site_name')}}</div>
+        </a>
+        <custom-menu position="homepage-navbar"></custom-menu>
+        <div class="auth-buttons">
+            <a class="auth-button" routerLink="/register" mat-button trans>Register</a>
+            <a class="auth-button" routerLink="/login" mat-stroked-button trans>Login</a>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="title">{{settings.get('landingPage.title')}}</div>
+        <div class="subtitle">{{settings.get('landingPage.subtitle')}}</div>
+        <a mat-raised-button color="primary" class="cta-button" routerLink="/register">{{settings.get('landingPage.ctaButton')}}</a>
+    </div>
+</div>

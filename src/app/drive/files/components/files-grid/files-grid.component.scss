@@ -1,0 +1,12 @@
+@import "../../../../../scss/variables";
+
+files-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  margin: -$file-grid-item-gutter;
+
+  &:empty {
+    margin: 0;
+  }
+}

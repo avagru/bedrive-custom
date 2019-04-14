@@ -1,0 +1,55 @@
+@import "../../../../scss/variables";
+
+homepage-appearance-panel {
+  display: block;
+
+  .input-wrapper {
+    position: relative;
+
+    .search-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+  }
+
+  .lists {
+    margin: 15px 0;
+
+    .list {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid $site-border-color-200;
+      border-radius: 4px;
+      background-color: $site-bg-color-100;
+      margin-bottom: 10px;
+
+      .actions {
+        margin-left: auto;
+        color: $icon-color-dark;
+      }
+
+      .name {
+        text-transform: capitalize;
+        margin-right: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .lists.cdk-drop-list-dragging .list:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+}

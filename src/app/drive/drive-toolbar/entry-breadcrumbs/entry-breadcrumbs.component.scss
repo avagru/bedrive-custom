@@ -1,0 +1,37 @@
+@import "../../../../scss/variables";
+
+entry-breadcrumbs {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+
+  .breadcrumb-item {
+    font-size: 1.8rem;
+    color: $site-text-color-400;
+    border-radius: 4px;
+    padding: 4px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $site-bg-color-300;
+    }
+
+    &:first-of-type {
+      text-transform: capitalize;
+    }
+
+    .mat-icon {
+      vertical-align: middle;
+      color: $site-text-color-300;
+      margin-left: -5px;
+    }
+  }
+
+  .separator {
+    color: $site-text-color-300;
+  }
+}

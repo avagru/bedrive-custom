@@ -1,0 +1,17 @@
+@import "material-theme";
+@import "variables";
+@import "../common/scss/global";
+@import "../common/scss/utils";
+@import "../common/scss/no-results-message";
+@import "../common/scss/buttons";
+@import "../common/scss/input";
+@import "../common/scss/modal";
+@import "../common/scss/social-icons";
+@import "../common/scss/auth-page";
+@import "../common/scss/perfect-scrollbar-theme";
+@import "../common/scss/context-menu";
+@import "../common/scss/appearance-editor-select-box";
+@import "files-select-box";
+@import "file-colors";
+@import "toggle-expansion-icon";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";

@@ -1,0 +1,61 @@
+<material-navbar [showToggleButton]="(isMobile$ | async)" (toggleButtonClick)="toggleSidebar()" menuPosition="drive-navbar">
+    <main-searchbar class="nav-searchbar"></main-searchbar>
+    <button mat-menu-item class="connect-btn" (click)="toggleConnectClick()">{{(accessToken$ | async) ? 'DISCONNECT' : 'CONNECT'}}</button>
+</material-navbar>
+<mat-sidenav-container *ngIf="(isConnect$ | async)">
+    <mat-sidenav [mode]="(isMobile$ | async) ? 'over' : 'side'" [opened]="(sidebarOpen$ | async)" class="left-sidebar">
+        <sidebar></sidebar>
+    </mat-sidenav>
+    <mat-sidenav [opened]="activityOpen$ | async" [mode]="(isMobile$ | async) ? 'over' : 'side'" position="end" class="right-sidebar">
+        <details-sidebar></details-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content driveHammerInteractions [class.has-rek]="settings.has('ads.drive')">
+        <ad-host slot="ads.drive"></ad-host>
+        <drive-toolbar></drive-toolbar>
+        <file-list-header></file-list-header>
+        <div class="loading-overlay-container">
+            <div class="files-container" #filesContainer #scrollContainer toggleSelectedClass [class.dragging]="dragging | async" contextMenu="entry" [disableContextMenu]="!(canUpload$ | async)" fileDropzone [disableDropzoneClick]="true" [disableDropzone]="!(canUpload$ | async)"
+                driveInfiniteScroll (filesDropped)="uploadFiles($event)">
+                <router-outlet></router-outlet>
+            </div>
+            <loading-indicator [isVisible]="loading$ | async" class="overlay"></loading-indicator>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<div class="row row-eq-height connect-container" *ngIf="!(isConnect$ | async)">
+    <div class="col-md-7">
+        <mat-sidenav-container>
+            <mat-sidenav [mode]="(isMobile$ | async) ? 'over' : 'side'" [opened]="(sidebarOpen$ | async)" class="left-sidebar">
+                <sidebar></sidebar>
+            </mat-sidenav>
+            <mat-sidenav-content driveHammerInteractions [class.has-rek]="settings.has('ads.drive')">
+                <ad-host slot="ads.drive"></ad-host>
+                <drive-toolbar></drive-toolbar>
+                <file-list-header></file-list-header>
+                <div class="loading-overlay-container">
+                    <div class="files-container" #filesContainer #scrollContainer toggleSelectedClass [class.dragging]="dragging | async" contextMenu="entry" [disableContextMenu]="!(canUpload$ | async)" fileDropzone [disableDropzoneClick]="true" [disableDropzone]="!(canUpload$ | async)"
+                        driveInfiniteScroll (filesDropped)="uploadFiles($event)">
+                        <router-outlet></router-outlet>
+                    </div>
+                    <loading-indicator [isVisible]="loading$ | async" class="overlay"></loading-indicator>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+    <div class="col-md-5">
+        <login *ngIf="!(accessToken$ | async)"></login>
+        <mat-sidenav-container>
+            <mat-sidenav-content driveHammerInteraction [class.has-rek]="settings.has('ads.drive')">
+                <ad-host slot="ads.drive"></ad-host>
+                <drive-toolbar></drive-toolbar>
+                <file-list-header></file-list-header>
+                <div class="loading-overlay-container">
+                    <div class="files-container" [class.dragging]="dragging | async" contextMenu="entry" [disableContextMenu]="!(canUpload$ | async)" fileDropzone [disableDropzoneClick]="true" [disableDropzone]="!(canUpload$ | async)" driveInfinitesScroll (filesDropped)="uploadFiles($event)">
+                        <project-list></project-list>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</div>
+<entry-drag-preview></entry-drag-preview>

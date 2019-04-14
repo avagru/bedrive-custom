@@ -1,0 +1,17 @@
+<mat-chip-list #chipList [selectable]="false">
+    <mat-chip
+        *ngFor="let item of formArray.valueChanges | async; index as i"
+        [selectable]="false"
+        [removable]="true"
+        [class.invalid]="formArray.at(i).invalid"
+        (removed)="remove(i)"
+    >
+        {{item}}
+        <mat-icon matChipRemove svgIcon="cancel"></mat-icon>
+    </mat-chip>
+    <input [placeholder]="placeholder"
+           class="mat-chip-input mat-input-element"
+           [matChipInputFor]="chipList"
+           [matChipInputAddOnBlur]="true"
+           (matChipInputTokenEnd)="add($event)" />
+</mat-chip-list>

@@ -1,0 +1,65 @@
+@import "../../../../../scss/variables";
+
+files-list {
+  display: block;
+
+  .mat-table {
+    width: 100%;
+
+    .mat-row {
+      &.selected {
+        background-color: $site-selected-item-bg-color;
+      }
+
+      &.drag-over {
+        background-color: $site-selected-item-bg-color;
+      }
+    }
+
+    .mat-column-image {
+      width: 60px;
+
+      file-thumbnail {
+        background-color: transparent;
+      }
+
+      file-icon {
+        margin-top: 3px;
+        width: 35px;
+        height: 35px;
+      }
+
+      img {
+        width: 35px;
+        height: 35px;
+        max-width: none;
+        object-fit: cover;
+      }
+    }
+
+    td.mat-cell:first-child, td.mat-footer-cell:first-child, th.mat-header-cell:first-child {
+      padding-left: 8px;
+    }
+
+    td.mat-cell:last-child, td.mat-footer-cell:last-child, th.mat-header-cell:last-child {
+      padding-right: 8px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      .mat-header-row, .mat-column-size, .mat-column-updated {
+        display: none;
+      }
+    }
+  }
+
+  .star-icon {
+    color: #ffc000;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+  }
+
+  .entry-name {
+    vertical-align: sub;
+  }
+}

@@ -1,0 +1,49 @@
+@import "../../../scss/variables";
+
+$ct-text-color: $site-text-color-300;
+$ct-text-size: 1.3rem;
+$ct-series-colors: (
+        #42A5F5,
+        #66BB6A,
+        #FF7043,
+        #5C6BC0,
+        #8D6E63,
+        #FFA726,
+        #26A69A,
+        #26C6DA,
+        #D4E157,
+        #8D6E63,
+        #BDBDBD,
+        #78909C,
+        #7E57C2,
+        #AB47BC,
+        #ef5350
+);
+
+// add separators to pie chart slices
+.ct-slice-pie {
+  fill-opacity: 0.7;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+// pie chart labels
+.ct-chart-pie .ct-label {
+  color: #fff;
+  fill: #fff;
+  font-weight: 500;
+}
+
+// line chart border width
+.ct-line {
+  stroke-width: 3px;
+}
+
+// chart legend colors
+@for $i from 1 to 15 {
+  .chart-legend .legend-item:nth-child(#{$i}):before {
+    background-color: nth($ct-series-colors, $i);
+  }
+}
+
+@import "~chartist/dist/scss/chartist.scss";

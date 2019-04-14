@@ -1,0 +1,21 @@
+<div class="input-container">
+    <label for="{{field.name}}">{{field.name}}</label>
+
+    <input *ngIf="field.input_type === 'text' || ! field.input_type"
+           type="text"
+           id="{{field.name}}"
+           placeholder="{{field.defaultValue}}"
+           [(ngModel)]="field.value"
+           (focus)="onFocus(field)"
+           (blur)="onBlur()"
+           (ngModelChange)="commitChanges(field)">
+
+    <textarea *ngIf="field.input_type === 'textarea'"
+              id="{{field.name}}"
+              placeholder="{{field.defaultValue}}"
+              [(ngModel)]="field.value"
+              (focus)="onFocus(field)"
+              (blur)="onBlur()"
+              (ngModelChange)="commitChanges(field)">
+    </textarea>
+</div>

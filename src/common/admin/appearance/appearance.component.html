@@ -1,0 +1,39 @@
+<aside class="sidebar">
+    <div class="header">
+        <div class="back-button" (click)="closeEditor()">
+            <mat-icon svgIcon="close" class="align-middle"></mat-icon>
+        </div>
+        <div class="title" trans>Appearance Editor</div>
+        <button mat-raised-button color="accent" class="button primary save-button" (click)="appearanceEditor.saveChanges()" [disabled]="appearanceEditor.changes.isEmpty()">
+            <span *ngIf="!appearanceEditor.changes.isEmpty()" trans>Save</span>
+            <span *ngIf="appearanceEditor.changes.isEmpty()" trans>Saved</span>
+        </button>
+    </div>
+
+    <div class="navigation" *ngIf="!appearanceEditor.activePanel">
+        <div class="nav-item" (click)="openPanel(pair.value.name)" *ngFor="let pair of appearanceEditor.config.sections | keyvalue:sortSections">
+            <span class="name">{{pair.value.name}}</span>
+            <mat-icon class="arrow-icon" svgIcon="keyboard-arrow-right"></mat-icon>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <ng-container *ngFor="let pair of appearanceEditor.config.sections | keyvalue:sortSections">
+            <div class="tab general-tab" *ngIf="appearanceEditor.activePanel === pair.value.name && pair.value.fields.length">
+                <appearance-panel [config]="pair.value"></appearance-panel>
+            </div>
+        </ng-container>
+        <div class="tab general-tab" *ngIf="appearanceEditor.activePanel === 'Menus'">
+            <menus-appearance-panel></menus-appearance-panel>
+        </div>
+        <div class="tab general-tab" *ngIf="appearanceEditor.activePanel === 'Homepage'">
+            <homepage-appearance-panel></homepage-appearance-panel>
+        </div>
+    </div>
+</aside>
+
+<div class="live-preview">
+    <iframe src="about:blank" frameborder="0" #iframe></iframe>
+</div>
+
+<loading-indicator [isVisible]="appearanceEditor.loading" class="overlay"></loading-indicator>

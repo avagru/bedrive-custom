@@ -1,0 +1,34 @@
+@import "../../../../scss/variables";
+
+uploads-panel {
+  width: 380px;
+  @include mat-elevation(5);
+  background-color: $site-bg-color-100;
+  user-select: none;
+
+  .header {
+    display: flex;
+    align-items: center;
+    background-color: $site-primary-color-200;
+    color: $site-text-color-100;
+    padding: 8px;
+
+    .info {
+      padding-left: 10px;
+    }
+
+    .actions {
+      margin-left: auto;
+    }
+
+    .minimize-icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .uploads-list {
+    max-height: 350px;
+    overflow: auto;
+  }
+}

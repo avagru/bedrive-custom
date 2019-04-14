@@ -1,0 +1,90 @@
+@import "../../../../../scss/variables";
+
+uploads-panel-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid $site-border-color-200;
+
+  // fix "jerky" animations bug on angular material
+  .mat-progress-bar .mat-progress-bar-fill {
+    transition: transform 130ms ease;
+  }
+
+  file-icon {
+    width: 35px;
+    height: 35px;
+    flex: 0 0 35px;
+    margin-right: 10px;
+  }
+
+  .content {
+    flex: 1 1 auto;
+    margin-bottom: 5px;
+    min-width: 0;
+
+    .meta {
+      display: flex;
+      align-items: center;
+      padding-bottom: 4px;
+    }
+  }
+
+  .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .time-left {
+    color: $site-text-color-300;
+    font-size: 1.3rem;
+    padding-left: 20px;
+    white-space: nowrap;
+  }
+
+  .actions {
+    margin-left: auto;
+    padding-left: 20px;
+
+    .mat-icon {
+      vertical-align: middle;
+      width: 22px;
+      height: 22px;
+      margin-bottom: 4px;
+    }
+  }
+
+  .completed-icon {
+    color: $site-accent-color;
+  }
+
+  .error-icon {
+    color: $danger-bg-color;
+  }
+
+  .cancel-button {
+    color: $link-color;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    line-height: 22px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .mat-progress-bar {
+    height: 3px;
+    border-radius: 3px;
+
+    .mat-progress-bar-buffer {
+      background-color: $site-bg-color-300;
+    }
+
+    .mat-progress-bar-fill:after {
+      background-color: $site-accent-color;
+    }
+  }
+}

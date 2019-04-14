@@ -1,0 +1,81 @@
+@import "../../../scss/variables";
+
+select-plan-panel {
+  .plans {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    padding: 5px 0;
+
+    @media only screen and (max-width: 1205px) {
+      display: block;
+
+      .plan {
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .plan {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    align-items: center;
+    margin-right: 25px;
+    @include mat-elevation(1);
+    background-color: $site-bg-color-100;
+    min-height: 367px;
+    padding: 48px 16px;
+    border-radius: 4px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    max-width: 500px;
+
+    &.recommended {
+      padding-top: 78px;
+      padding-bottom: 78px;
+      border-top-color: $site-primary-color-200;
+
+      .name {
+        font-size: 3.4rem;
+        color: $site-primary-color-200;
+      }
+    }
+
+    //&:last-of-type {
+    //  margin-right: auto;
+    //}
+    //
+    //&:first-of-type {
+    //  margin-left: auto;
+    //}
+
+    .name {
+      font-size: 3.2rem;
+      font-weight: 500;
+      padding-top: 15px;
+      text-transform: capitalize;
+      color: $site-text-color-400;
+    }
+
+    .price-box {
+      padding: 0 0 15px;
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: $site-text-color-300;
+    }
+
+    .select-plan-button {
+      min-width: 125px;
+      line-height: 44px;
+      margin: 35px 0 20px;
+    }
+  }
+
+  .mat-stroked-button:not([disabled]) {
+    border-color: $site-primary-color-200;
+  }
+}

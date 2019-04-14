@@ -1,0 +1,77 @@
+@import "../../../../scss/variables";
+
+details-panel {
+  display: block;
+  padding: 24px;
+
+  file-thumbnail {
+    margin-bottom: 20px;
+  }
+
+  .users-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
+    img {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      object-fit: cover;
+      margin-right: 10px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+  .details-list {
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .name {
+        width: 120px;
+        flex-shrink: 0;
+        color: $drive-text-color;
+      }
+
+      .value {
+        flex-shrink: 0;
+      }
+
+      .type-value {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .nothing-selected {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 400;
+
+    .mat-icon {
+      margin-right: 5px;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+  }
+
+  .location-item .value {
+    font-weight: 500;
+    cursor: pointer;
+
+    .mat-icon {
+      color: $drive-text-color;
+      vertical-align: bottom;
+    }
+
+    &:hover .text {
+      color: $link-color;
+      text-decoration: underline;
+    }
+  }
+}
