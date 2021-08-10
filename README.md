@@ -1,9 +1,10 @@
 # Bedrive Custom Version
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
-`Features
-- bedrive clone
-- remote ftp server 
+
+## Features
+- bedrive core
+- self drive and remote ftp server
 - CRUD and file transfer function based drag & drop between local server and remote server
 
 ## Development server
